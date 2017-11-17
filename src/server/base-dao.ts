@@ -4,6 +4,6 @@ export class BaseDao {
 
   public select() {
     return this.pool.query(`select * from ${this.table}`, [])
-      .then((result) => result.rows);
+      .then( result => result.rows)
   }
 }
