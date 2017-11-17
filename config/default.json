@@ -1,9 +1,3 @@
 {
-  "db": {
-    "host": "localhost",
-    "port": 5432,
-    "name": "test",
-    "user": "test",
-    "password": "test"
-  }
+  "db": "postgres://exat:exat@localhost:5432/exat"
 }
