@@ -1,6 +1,6 @@
 import { ok } from 'assert'
 import { Request, Response } from 'express'
-import { isString } from 'util'
+import { isFunction, isObject, isString } from 'util'
 import { userApi } from './users/user-api'
 import { parseBodyAsJsonObject } from './utils'
 
@@ -21,12 +21,23 @@ export const registerMethodHandler = (method: string, handler: IMethodHandler) =
   registerMethodDefinition(method, { handler, requiresAuth: true })
 }
 
-export const rpc = async (req: Request, res: Response) => {
-  const body = await parseBodyAsJsonObject(req)
-  const { method, params = {} } = body
-  ok(isString(method), 'method is not provided')
-  const { handler, requiresAuth } = methodDefinitionMap.get(method)
-  handler({ params })
-    .then(result => res.send(result))
-    .catch(error => res.status(500).send(error))
+export const rpcHandler = async (req: Request, res: Response, next) => {
+  try {
+    const body = await parseBodyAsJsonObject(req)
+    const { method, params = {} } = body
+    ok(isString(method), 'invalid method name')
+    const methodDefinition = methodDefinitionMap.get(method)
+    ok(isObject(methodDefinition), 'invalid method definition')
+    const { handler, requiresAuth } = methodDefinition
+    ok(isFunction(handler), 'invalid method handler')
+    const result = await handler({ params })
+    res.send(result)
+  } catch (error) {
+    res.status(500).send({ message: error.message })
+  }
 }
+
+registerMethodDefinition('users.getAll', {
+  handler: ({ params }) => Promise.resolve(params),
+  requiresAuth: true
+})

@@ -1,11 +1,11 @@
 import * as express from 'express'
-import { rpc } from './rpc'
+import { rpcHandler } from './rpc'
 
 const app = express()
 
 app.use(express.static('public'))
 
-app.post('/rpc', rpc)
+app.post('/rpc', rpcHandler)
 
 app.use((err, req, res, next) => {
   console.error(err.stack)

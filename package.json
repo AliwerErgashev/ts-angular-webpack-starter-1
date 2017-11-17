@@ -4,7 +4,7 @@
   "private": true,
   "main": "src/server/main.ts",
   "scripts": {
-    "nodemon": "nodemon --exec 'ts-node --inspect .' --watch 'src/server/**/*.ts'",
+    "nodemon": "nodemon --exec 'ts-node --inspect .' --ext 'ts' --watch 'src/server'",
     "start": "concurrently \"npm run webpack\" \"npm run nodemon\"",
     "webpack": "webpack-dev-server -d --content-base public --open --port 9001"
   },
