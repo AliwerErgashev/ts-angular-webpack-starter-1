@@ -3,6 +3,7 @@ import { Request } from 'express'
 export const parseBodyAsBuffer = async (req: Request) => {
   return new Promise((resolve, reject) => {
     const chunks = []
+    req.on('error', error => reject(error))
     req.on('data', chunk => chunks.push(chunk))
     req.on('end', () => resolve(Buffer.concat(chunks)))
   })
