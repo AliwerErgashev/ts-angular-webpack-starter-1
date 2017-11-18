@@ -36,8 +36,3 @@ export const rpcHandler = async (req: Request, res: Response, next) => {
     res.status(500).send({ message: error.message })
   }
 }
-
-registerMethodDefinition('users.getAll', {
-  handler: ({ params }) => Promise.resolve(params),
-  requiresAuth: true
-})
