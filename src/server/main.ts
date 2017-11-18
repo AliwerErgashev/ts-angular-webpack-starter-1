@@ -1,11 +1,13 @@
 import * as express from 'express'
-import { rpcHandler } from './rpc'
+import { rpcInfoHandler, rpcProcessHandler } from './rpc'
+import './rpc-config'
 
 const app = express()
 
 app.use(express.static('public'))
 
-app.post('/rpc', rpcHandler)
+app.get('/rpc', rpcInfoHandler)
+app.post('/rpc', rpcProcessHandler)
 
 app.use((err, req, res, next) => {
   console.error(err.stack)

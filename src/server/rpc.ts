@@ -1,6 +1,7 @@
 import { ok } from 'assert'
 import { Request, Response } from 'express'
 import { isFunction, isObject, isString } from 'util'
+import { objectForEach } from '../common/utils'
 import { userApi } from './users/user-api'
 import { parseBodyAsJsonObject } from './utils'
 
@@ -11,22 +12,31 @@ interface IMethodDefinition {
   requiresAuth: boolean
 }
 
-const methodDefinitionMap = new Map<string, IMethodDefinition>()
+const methodDefinitionMap = {}
 
 export const registerMethodDefinition = (method: string, definition: IMethodDefinition) => {
-  methodDefinitionMap.set(method, definition)
+  methodDefinitionMap[method] = definition
 }
 
-export const registerMethodHandler = (method: string, handler: IMethodHandler) => {
-  registerMethodDefinition(method, { handler, requiresAuth: true })
+export const registerMethodDefinitionMap = (map, requiresAuth = true) => {
+  objectForEach(map, (key, value) => {
+    if (isFunction(value)) {
+      return registerMethodDefinition(key, { handler: value, requiresAuth })
+    }
+    registerMethodDefinition(key, value)
+  })
 }
 
-export const rpcHandler = async (req: Request, res: Response, next) => {
+export const rpcInfoHandler = async (req: Request, res: Response) => {
+  res.send(Object.keys(methodDefinitionMap))
+}
+
+export const rpcProcessHandler = async (req: Request, res: Response) => {
   try {
     const body = await parseBodyAsJsonObject(req)
     const { method, params = {} } = body
     ok(isString(method), 'invalid method name')
-    const methodDefinition = methodDefinitionMap.get(method)
+    const methodDefinition = methodDefinitionMap[method]
     ok(isObject(methodDefinition), 'invalid method definition')
     const { handler, requiresAuth } = methodDefinition
     ok(isFunction(handler), 'invalid method handler')

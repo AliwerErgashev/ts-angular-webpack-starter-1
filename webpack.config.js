@@ -46,5 +46,13 @@ module.exports = {
         use: ['ts-loader', 'angular2-template-loader']
       }
     ]
+  },
+  devServer: {
+    contentBase: 'public',
+    open: true,
+    port: 9001,
+    proxy: {
+      '/rpc': 'http://localhost:9000'
+    }
   }
 };
