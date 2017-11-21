@@ -1,8 +1,8 @@
-import { Router } from 'express'
-import { userDao, UserDao } from './user-dao'
+import { Router } from "express";
+import { userDao, UserDao } from "./user-dao";
 
 const userApiFactory = (userDao: UserDao) => ({
-  'getList': ({ params }) => userDao.select(),
-})
+  "getList": ({ params }) => userDao.select(),
+});
 
-export const userApi = userApiFactory(userDao)
+export const userApi = userApiFactory(userDao);

@@ -3,26 +3,10 @@
     "tslint:recommended"
   ],
   "rules": {
-    "arrow-parens": [
-      true,
-      "ban-single-arg-parens"
-    ],
     "member-access": false,
     "no-console": false,
     "no-shadowed-variable": false,
     "object-literal-key-quotes": false,
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "semicolon": [
-      true,
-      "never"
-    ],
-    "trailing-comma": [
-      true,
-      "never"
-    ],
     "variable-name": false
   }
 }
