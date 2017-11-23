@@ -1,5 +1,5 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
 
 @Injectable()
 export class RpcService {
@@ -8,6 +8,6 @@ export class RpcService {
   ) { }
 
   async request<T>(method: string, params: any): Promise<T> {
-    return this.http.post<T>("rpc", { method, params }).toPromise();
+    return this.http.post<T>('rpc', { method, params }).toPromise()
   }
 }

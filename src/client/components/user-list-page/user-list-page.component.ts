@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { UserService } from "../../services/user.service";
+import { Component, OnInit } from '@angular/core'
+import { UserService } from '../../services/user.service'
 
 @Component({
-  templateUrl: "./user-list-page.component.html",
+  templateUrl: './user-list-page.component.html',
 })
 export class UserListPageComponent implements OnInit {
   constructor(
@@ -10,10 +10,10 @@ export class UserListPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getList();
+    this.userService.getList()
   }
 
   get users() {
-    return this.userService.users;
+    return this.userService.users
   }
 }
