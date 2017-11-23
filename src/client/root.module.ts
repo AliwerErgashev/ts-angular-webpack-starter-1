@@ -14,6 +14,7 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 import { LoginPageComponent } from "./components/login-page/login-page.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { RootComponent } from "./components/root/root.component";
+import { UserItemPageComponent } from "./components/user-item-page/user-item-page.component";
 import { UserListPageComponent } from "./components/user-list-page/user-list-page.component";
 
 @NgModule({
@@ -26,6 +27,7 @@ import { UserListPageComponent } from "./components/user-list-page/user-list-pag
     LoginPageComponent,
     NavbarComponent,
     RootComponent,
+    UserItemPageComponent,
     UserListPageComponent,
   ],
   imports: [
