@@ -5,7 +5,7 @@
   "main": "src/server/main.ts",
   "scripts": {
     "nodemon": "nodemon --exec 'ts-node --inspect .' --ext 'ts' --watch 'src/server'",
-    "start": "concurrently \"npm run webpack\" \"npm run nodemon\"",
+    "start": "concurrently --raw \"npm run webpack\" \"npm run nodemon\"",
     "webpack": "webpack-dev-server -d"
   },
   "dependencies": {
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/express": "~4.0.0",
     "@types/node": "~8.0.0",
-    "@types/pg": "~7.1.0",
+    "@types/pg": "~7.4.0",
     "angular2-template-loader": "~0.6.0",
     "concurrently": "~3.5.0",
     "css-loader": "~0.28.0",
