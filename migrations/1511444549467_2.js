@@ -1,8 +1,8 @@
 exports.up = (pgm) => {
   return pgm.createTable('accessTokens', {
-    id: 'id',
+    id: 'text',
     userId: {
-      type: 'integer',
+      type: 'text',
       references: 'users'
     }
   });
