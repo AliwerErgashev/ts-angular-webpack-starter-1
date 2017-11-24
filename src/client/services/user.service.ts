@@ -13,7 +13,7 @@ export class UserService {
     return this._users
   }
 
-  async getList() {
+  async fetchList() {
     this._users = await this.rpcService.request<any[]>('users.getList', {})
   }
 }

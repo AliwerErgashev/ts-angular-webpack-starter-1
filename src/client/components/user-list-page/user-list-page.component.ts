@@ -10,7 +10,7 @@ export class UserListPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getList()
+    this.userService.fetchList()
   }
 
   get users() {

@@ -1,7 +1,8 @@
+import { rpcMethods } from '../../common/constants'
 import { SessionDao, sessionDao } from './session-dao'
 
 export const sessionApiFactory = (sessionDao: SessionDao) => ({
-  'create': async ({ params }) => {
+  [rpcMethods.sessions.create]: async ({ params }) => {
     const { publicKey, authTokenId } = params
     const { rows: [session] } = await sessionDao.create(publicKey, authTokenId)
     return session

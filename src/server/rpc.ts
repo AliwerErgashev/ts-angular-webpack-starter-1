@@ -1,7 +1,6 @@
 import { ok } from 'assert'
 import { Request, Response } from 'express'
 import { isFunction, isObject, isString } from 'util'
-import { objectForEach } from '../common/utils'
 import { userApi } from './users/user-api'
 import { parseBodyAsJsonObject } from './utils'
 
@@ -19,7 +18,8 @@ export const registerMethodDefinition = (method: string, definition: IMethodDefi
 }
 
 export const registerMethodDefinitionMap = (map, requiresAuth = true) => {
-  objectForEach(map, (key, value) => {
+  Object.keys(map).forEach((key) => {
+    const value = map[key]
     if (isFunction(value)) {
       return registerMethodDefinition(key, { handler: value, requiresAuth })
     }
