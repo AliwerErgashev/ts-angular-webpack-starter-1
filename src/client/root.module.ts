@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule, Routes } from '@angular/router'
 import { AboutPageComponent } from './components/about-page/about-page.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { HomePageComponent } from './components/home-page/home-page.component'
 import { LoginPageComponent } from './components/login-page/login-page.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
@@ -11,7 +12,7 @@ import { UserItemPageComponent } from './components/user-item-page/user-item-pag
 import { UserListPageComponent } from './components/user-list-page/user-list-page.component'
 import { routes } from './routes'
 import { AuthGuard } from './services/auth.guard'
-import { LoginService } from './services/login.service'
+import { AuthService } from './services/auth.service'
 import { RpcService } from './services/rpc.service'
 import { UserService } from './services/user.service'
 
@@ -21,6 +22,7 @@ import { UserService } from './services/user.service'
   ],
   declarations: [
     AboutPageComponent,
+    DashboardComponent,
     HomePageComponent,
     LoginPageComponent,
     NavbarComponent,
@@ -35,7 +37,7 @@ import { UserService } from './services/user.service'
   ],
   providers: [
     AuthGuard,
-    LoginService,
+    AuthService,
     RpcService,
     UserService,
   ],
