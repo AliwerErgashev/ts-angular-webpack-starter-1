@@ -1,7 +1,7 @@
 var { ICBuffer } = require('./ICBuffer');
 var { ICHMac } = require('./ICHMac');
 
-var ICPkcs5 = exports.ICPkcs5 = function () { };
+var ICPkcs5 = exports.ICPkcs5 = function ICPkcs5() { };
 
 ICPkcs5.pbkdf2 = function (md, key, salt, iterations, length) {
   var rval = new ICBuffer();
