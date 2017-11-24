@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { userDao, UserDao } from './user-dao'
 
 export const userApiFactory = (userDao: UserDao) => ({
-  'getList': ({ params }) => {
+  'getList': async () => {
     return userDao.select()
   },
-  'getOne': ({ params }) => {
+  'getOne': async ({ params }) => {
     const { id } = params
-    return userDao.select({ id }, { limit1 })
+    return userDao.select({ id }, { limit: 1 })
   },
 })
 

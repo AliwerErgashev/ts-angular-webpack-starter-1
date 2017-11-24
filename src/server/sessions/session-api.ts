@@ -1,7 +1,7 @@
 import { SessionDao, sessionDao } from './session-dao'
 
 export const sessionApiFactory = (sessionDao: SessionDao) => ({
-  'create': ({ params }) => {
+  'create': async ({ params }) => {
     const { publicKey, authTokenId } = params
     return sessionDao.create(publicKey, authTokenId)
   },

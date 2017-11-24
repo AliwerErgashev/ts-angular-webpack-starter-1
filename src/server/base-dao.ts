@@ -17,16 +17,19 @@ export class BaseDao {
     return this.runSqlQuery(query, values)
   }
 
-  private selectQuery(where) {
+  private selectQuery(where, options) {
+    const { limit, offset } = options
     return {
       type: 'select',
       table: this.table,
       where,
+      limit,
+      offset,
     }
   }
 
-  public async select(where = {}) {
-    const result = await this.runMongoSqlQuery(this.selectQuery(where))
+  public async select(where = {}, options = {}) {
+    const result = await this.runMongoSqlQuery(this.selectQuery(where, options))
     return result.rows
   }
 
