@@ -4,9 +4,10 @@
   "private": true,
   "main": "src/server/main.ts",
   "scripts": {
-    "nodemon": "nodemon --exec 'ts-node --inspect .' --ext 'ts' --watch 'src/server'",
+    "node-pg-migrate": "DATABASE_URL=postgres://test:test@localhost:5432/test node-pg-migrate",
+    "nodemon": "DATABASE_URL=postgres://test:test@localhost:5432/test nodemon --exec 'ts-node --inspect .' --ext 'ts' --watch 'src/server'",
     "start": "concurrently --raw \"npm run webpack\" \"npm run nodemon\"",
-    "test": "jest",
+    "test": "DATABASE_URL=postgres://test:test@localhost:5432/test_test jest",
     "webpack": "webpack-dev-server -d"
   },
   "dependencies": {
