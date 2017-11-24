@@ -1,8 +1,9 @@
+import { Pool } from 'pg'
 import { BaseDao } from '../base-dao'
 import { pool } from '../pool'
 
 export class SessionDao extends BaseDao {
-  constructor(pool) {
+  constructor(pool: Pool) {
     super(pool, 'sessions')
   }
 }

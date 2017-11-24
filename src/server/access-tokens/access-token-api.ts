@@ -3,10 +3,7 @@ import { rpcMethods } from '../../common/constants'
 import { UserDao, userDao } from '../users/user-dao'
 import { AccessTokenDao, accessTokenDao } from './access-token-dao'
 
-export const accessTokenApiFactory = (
-  accessTokenDao: AccessTokenDao,
-  userDao: UserDao,
-) => ({
+export const accessTokenApiFactory = (accessTokenDao: AccessTokenDao, userDao: UserDao) => ({
   [rpcMethods.authTokens.create]: async ({ params }) => {
     const { username, password } = params
     const { rows: [user] } = await userDao.select({ username, password })

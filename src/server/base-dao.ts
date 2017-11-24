@@ -8,16 +8,12 @@ export class BaseDao {
     protected table: string,
   ) { }
 
-  protected async runSqlQuery(queryText: string, values?: any[]) {
-    return this.pool.query(queryText, values)
-  }
-
-  protected async runMongoSqlQuery(mongoSqlQuery) {
+  async runMongoSqlQuery(mongoSqlQuery) {
     const { query, values } = sql(mongoSqlQuery)
-    return this.runSqlQuery(query, values)
+    return this.pool.query(query, values)
   }
 
-  private selectQuery(where, options) {
+  selectQuery(where, options) {
     const { limit, offset } = options
     return {
       type: 'select',
@@ -28,11 +24,11 @@ export class BaseDao {
     }
   }
 
-  public async select(where = {}, options = {}) {
+  async select(where = {}, options = {}) {
     return this.runMongoSqlQuery(this.selectQuery(where, options))
   }
 
-  private insertQuery(values, options) {
+  insertQuery(values, options) {
     const { returning = ['*'] } = options
     return {
       type: 'insert',
@@ -42,12 +38,12 @@ export class BaseDao {
     }
   }
 
-  public async insert(values, options = {}) {
+  async insert(values, options = {}) {
     preInsertCheck(values)
     return this.runMongoSqlQuery(this.insertQuery(values, options))
   }
 
-  private updateQuery(where, values, options) {
+  updateQuery(where, values, options) {
     const { returning = ['*'] } = options
     return {
       type: 'update',
@@ -58,11 +54,11 @@ export class BaseDao {
     }
   }
 
-  public async update(where, values, options = {}) {
+  async update(where, values, options = {}) {
     return this.runMongoSqlQuery(this.updateQuery(where, values, options))
   }
 
-  private deleteQuery(where, options) {
+  deleteQuery(where, options) {
     const { returning = ['*'] } = options
     return {
       type: 'delete',
@@ -72,7 +68,7 @@ export class BaseDao {
     }
   }
 
-  public async delete(where, options) {
+  async delete(where, options = {}) {
     return this.runMongoSqlQuery(this.deleteQuery(where, options))
   }
 }
