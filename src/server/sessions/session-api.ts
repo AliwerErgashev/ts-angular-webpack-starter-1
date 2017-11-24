@@ -1,8 +1,9 @@
 import { SessionDao, sessionDao } from './session-dao'
 
 export const sessionApiFactory = (sessionDao: SessionDao) => ({
-  'createSession': ({ params }) => {
-    return Promise.resolve({})
+  'create': ({ params }) => {
+    const { publicKey, authTokenId } = params
+    return sessionDao.create(publicKey, authTokenId)
   },
 })
 

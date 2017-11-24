@@ -1,9 +1,9 @@
 import { AccessTokenDao, accessTokenDao } from './access-token-dao'
 
 export const accessTokenApiFactory = (accessTokenDao: AccessTokenDao) => ({
-  'createToken': ({ params }) => {
+  'create': ({ params }) => {
     const { username, password } = params
-    return accessTokenDao.createToken(username, password)
+    return accessTokenDao.create(username, password)
   },
 })
 

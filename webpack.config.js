@@ -10,7 +10,7 @@ module.exports = {
     filename: 'assets/bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js', '.json']
   },
   plugins: [
     new ContextReplacementPlugin(/angular(\\|\/)core/, __dirname)
