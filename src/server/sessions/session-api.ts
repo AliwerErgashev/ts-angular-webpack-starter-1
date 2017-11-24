@@ -1,11 +1,17 @@
 import { rpcMethods } from '../../common/constants'
+import { ICCipherKey } from '../../libs/icjs/ICCipherKey'
 import { SessionDao, sessionDao } from './session-dao'
 
 export const sessionApiFactory = (sessionDao: SessionDao) => ({
   [rpcMethods.sessions.create]: async ({ params }) => {
-    const { publicKey, authTokenId } = params
-    const { rows: [session] } = await sessionDao.create(publicKey, authTokenId)
-    return session
+    const { publicKey } = params
+    const cipherKey = new ICCipherKey()
+    const dh = ICCipherKey.dh(cipherKey.getPrivateKey().toHex(), publicKey).toHex()
+    const { rows: [session] } = await sessionDao.insert({ dh })
+    return {
+      id: session.id,
+      publicKey: cipherKey.getPublicKey().toHex(),
+    }
   },
 })
 
