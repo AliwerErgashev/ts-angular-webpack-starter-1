@@ -29,8 +29,7 @@ export class BaseDao {
   }
 
   public async select(where = {}, options = {}) {
-    const result = await this.runMongoSqlQuery(this.selectQuery(where, options))
-    return result.rows
+    return this.runMongoSqlQuery(this.selectQuery(where, options))
   }
 
   private insertQuery(values, options) {

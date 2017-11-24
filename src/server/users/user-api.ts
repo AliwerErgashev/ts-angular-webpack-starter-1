@@ -3,11 +3,13 @@ import { userDao, UserDao } from './user-dao'
 
 export const userApiFactory = (userDao: UserDao) => ({
   'getList': async () => {
-    return userDao.select()
+    const { rows } = await userDao.select()
+    return rows
   },
   'getOne': async ({ params }) => {
     const { id } = params
-    return userDao.select({ id }, { limit: 1 })
+    const { rows: [user] } = await userDao.select({ id }, { limit: 1 })
+    return user
   },
 })
 

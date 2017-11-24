@@ -13,7 +13,7 @@ export class AccessTokenDao extends BaseDao {
   }
 
   async create(username, password) {
-    const [user] = await userDao.select({ username, password })
+    const { rows: [user] } = await userDao.select({ username, password })
     ok(user, 'invalid__user')
     return this.insert({
       userId: user.id,
