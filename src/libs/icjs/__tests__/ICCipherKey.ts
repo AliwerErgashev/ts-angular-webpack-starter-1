@@ -1,4 +1,4 @@
-import { ICCipherKey } from './ICCipherKey'
+import { ICCipherKey } from '../ICCipherKey'
 
 const cipherKey = new ICCipherKey()
 
