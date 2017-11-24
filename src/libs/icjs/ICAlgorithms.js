@@ -1,6 +1,6 @@
-import { ICUzdst1106IIDigest } from './ICUzdst1106IIDigest';
+var { ICUzdst1106IIDigest } = require('./ICUzdst1106IIDigest');
 
-export const ICAlgorithms = {};
+var ICAlgorithms = exports.ICAlgorithms = {};
 
 ICAlgorithms.Digest = {};
 ICAlgorithms.Digest.SHA1 = {};

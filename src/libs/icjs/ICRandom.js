@@ -1,6 +1,6 @@
-import { ICPkcs5 } from './ICPkcs5';
+var { ICPkcs5 } = require('./ICPkcs5');
 
-export const ICRandom = function () { };
+var ICRandom = exports.ICRandom = function () { };
 
 ICRandom.generate = function (length) {
   if (length < 8 || length > 1024) {

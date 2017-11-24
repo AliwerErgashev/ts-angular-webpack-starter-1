@@ -1,6 +1,6 @@
-import { BigInteger } from './jsbn';
+var { BigInteger } = require('jsbn');
 
-export const ICMath = function () { };
+var ICMath = exports.ICMath = function ICMath() { };
 
 ICMath.multiply = function (x, y, R) {
   return x.multiply(R).add(BigInteger.ONE).multiply(y).add(x);

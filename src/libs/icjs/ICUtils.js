@@ -7,7 +7,7 @@
  */
 
 /* Utilities API */
-export const ICUtils = function () { };
+var ICUtils = exports.ICUtils = function ICUtils() { };
 
 // define isArray
 ICUtils.isArray = Array.isArray || function (x) {

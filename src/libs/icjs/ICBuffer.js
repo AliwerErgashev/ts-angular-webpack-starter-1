@@ -1,6 +1,6 @@
-import { ICUtils } from './ICUtils';
+var { ICUtils } = require('./ICUtils');
 
-export const ICBuffer = function (b) {
+var ICBuffer = exports.ICBuffer = function ICBuffer(b) {
   this.data = [];
   this.read = 0;
 
