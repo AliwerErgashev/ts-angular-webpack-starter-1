@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule, Routes } from '@angular/router'
 import { AboutPageComponent } from './components/about-page/about-page.component'
@@ -32,6 +33,7 @@ import { UserService } from './services/user.service'
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: true }),
   ],
