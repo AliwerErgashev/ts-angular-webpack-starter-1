@@ -1,6 +1,9 @@
 exports.up = (pgm) => {
   return pgm.createTable('users', {
-    id: 'text',
+    id: {
+      type: 'text',
+      primaryKey: true,
+    },
     username: 'text',
     password: 'text'
   });
