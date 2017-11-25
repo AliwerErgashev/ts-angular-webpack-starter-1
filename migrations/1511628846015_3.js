@@ -4,9 +4,9 @@ exports.up = (pgm) => {
       type: 'text',
       primaryKey: true,
     },
-    authTokenId: {
+    accessTokenId: {
       type: 'text',
-      references: 'authTokens'
+      references: '"accessTokens"'
     }
   });
 };
