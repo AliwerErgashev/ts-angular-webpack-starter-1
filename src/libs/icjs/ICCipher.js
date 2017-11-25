@@ -5,7 +5,7 @@ var { ICHMac } = require('./ICHMac');
 
 var ICCipher = exports.ICCipher = function ICCipher() { }
 
-ICCipher.prototype.encrypt = function (dh, data) {
+ICCipher.encrypt = function (dh, data) {
   var iv = ICRandom.generate(8);
   var enc = ICGost89Cipher.cfbe(dh.bytes(), ICBuffer.createBuffer(data), iv.bytes());
   var dig = ICHMac.digest("UZDST1106II", iv, enc.bytes());
@@ -14,7 +14,7 @@ ICCipher.prototype.encrypt = function (dh, data) {
   return iv.toRawString();
 };
 
-ICCipher.prototype.decrypt = function (dh, rawString) {
+ICCipher.decrypt = function (dh, rawString) {
   var buffer = ICBuffer.createBuffer(ICBuffer.fromRawString(rawString));
   if (buffer.length() < 41) {
     throw new Error('Invalid input data!');
