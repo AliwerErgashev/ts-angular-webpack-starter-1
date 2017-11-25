@@ -4,7 +4,7 @@
   "private": true,
   "main": "src/server/main.ts",
   "scripts": {
-    "node-pg-migrate": "DATABASE_URL=postgres://test:test@localhost:5432/test node-pg-migrate",
+    "node-pg-migrate": "DATABASE_URL=postgres://test:test@localhost:5432/test node-pg-migrate -t _migrations",
     "nodemon": "DATABASE_URL=postgres://test:test@localhost:5432/test nodemon --exec 'ts-node --inspect .' --ext 'ts' --watch 'src/server'",
     "start": "concurrently --raw \"npm run webpack\" \"npm run nodemon\"",
     "test": "DATABASE_URL=postgres://test:test@localhost:5432/test_test jest",
