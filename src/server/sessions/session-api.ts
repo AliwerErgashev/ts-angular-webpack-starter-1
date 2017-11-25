@@ -7,6 +7,7 @@ export const sessionApiFactory = (sessionDao: SessionDao) => ({
     const { publicKey } = params
     const cipherKey = new ICCipherKey()
     const dh = ICCipherKey.dh(cipherKey.getPrivateKey().toHex(), publicKey).toHex()
+    console.log(dh)
     const { rows: [session] } = await sessionDao.insert({ dh })
     return {
       id: session.id,

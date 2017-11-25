@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { rpcMethods } from '../../common/constants'
 import { RpcService } from './rpc.service'
 
 @Injectable()
@@ -14,6 +15,6 @@ export class UserService {
   }
 
   async fetchList() {
-    this._users = await this.rpcService.request<any[]>('users.getList', {})
+    this._users = await this.rpcService.request(rpcMethods.users.getList)
   }
 }
