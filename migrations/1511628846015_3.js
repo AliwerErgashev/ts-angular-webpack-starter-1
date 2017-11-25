@@ -7,7 +7,8 @@ exports.up = (pgm) => {
     accessTokenId: {
       type: 'text',
       references: '"accessTokens"'
-    }
+    },
+    dh: 'text'
   });
 };
 
