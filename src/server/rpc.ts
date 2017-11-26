@@ -33,7 +33,14 @@ export const rpcInfoHandler = async (req: Request, res: Response) => {
 
 export const rpcProcessHandler = async (req: Request, res: Response) => {
   try {
-    const body = await parseBodyAsJsonObject(req)
+    let body
+    const authorizationHeader = req.header('Authorization')
+    if (isString(authorizationHeader)) {
+      console.log(authorizationHeader)
+      const sessionId = authorizationHeader.replace('Bearer: ', '')
+    } else {
+      body = await parseBodyAsJsonObject(req)
+    }
     const { method, params = {} } = body
     ok(isString(method), 'invalid method name')
     const methodDefinition = methodDefinitionMap[method]

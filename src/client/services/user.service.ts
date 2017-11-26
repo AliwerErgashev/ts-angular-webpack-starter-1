@@ -15,6 +15,6 @@ export class UserService {
   }
 
   async fetchList() {
-    this._users = await this.rpcService.request(rpcMethods.users.getList)
+    this._users = await this.rpcService.request(rpcMethods.users.getList, {})
   }
 }
