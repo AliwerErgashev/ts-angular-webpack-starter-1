@@ -15,7 +15,6 @@ export class LoginPageComponent {
   async login() {
     try {
       const authToken = await this.authService.login(this.username, this.password)
-      console.info(authToken)
     } catch (error) {
       console.error(error)
     }
