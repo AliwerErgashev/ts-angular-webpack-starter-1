@@ -19,20 +19,22 @@ function bigIntegerToArray(bigInteger, length) {
   return byteArray;
 }
 
-const ICCipherKey = exports.ICCipherKey = function ICCipherKey() {
-  this._privateKey = new BigInteger(ICRandom.generate(32).toHex(), 16);
-  this._publicKey = ICMath.modPow(_q, this._privateKey, _r, _p);
-}
+exports.ICCipherKey = class ICCipherKey {
+  constructor() {
+    this._privateKey = new BigInteger(ICRandom.generate(32).toHex(), 16);
+    this._publicKey = ICMath.modPow(_q, this._privateKey, _r, _p);
+  }
 
-ICCipherKey.dh = function dh(privateKey, publicKey) {
-  var res = ICMath.modPow(new BigInteger(publicKey, 16), new BigInteger(privateKey, 16), _r, _p);
-  return ICBuffer.createBuffer(bigIntegerToArray(res, 32));
-};
+  static dh(privateKey, publicKey) {
+    var res = ICMath.modPow(new BigInteger(publicKey, 16), new BigInteger(privateKey, 16), _r, _p);
+    return ICBuffer.createBuffer(bigIntegerToArray(res, 32));
+  }
 
-ICCipherKey.prototype.getPrivateKey = function () {
-  return ICBuffer.createBuffer(bigIntegerToArray(this._privateKey, 32));
-};
+  getPrivateKey() {
+    return ICBuffer.createBuffer(bigIntegerToArray(this._privateKey, 32));
+  }
 
-ICCipherKey.prototype.getPublicKey = function () {
-  return ICBuffer.createBuffer(bigIntegerToArray(this._publicKey, 32));
+  getPublicKey() {
+    return ICBuffer.createBuffer(bigIntegerToArray(this._publicKey, 32));
+  }
 };
